@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:ubereats/json/home_page_json.dart';
+import 'package:ubereats/pages/store_detailPage.dart';
 import 'package:ubereats/theme/colors.dart';
 import 'package:ubereats/theme/styles.dart';
 import 'package:ubereats/widgets/custom_slider.dart';
@@ -272,161 +273,24 @@ class _HomePageState extends State<HomePage> {
             ),
             Container(
               width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 160,
-                          child: Image.network(
-                            firstMenu[0]['img'],
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 15,
-                          right: 15,
-                          child: Icon(
-                            firstMenu[0]["is_liked"]
-                                ? Icons.favorite
-                                : Icons.favorite_border,
-                            color: firstMenu[0]["is_liked"]
-                                ? Colors.red
-                                : Colors.white,
-                            size: 30,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Text(
-                      firstMenu[0]['name'],
-                      style: TextStyle(fontWeight: FontWeight.w400),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Sponsored",
-                          style: TextStyle(color: black, fontSize: 14),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Icon(
-                          Icons.info,
-                          color: Colors.grey,
-                          size: 20,
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      firstMenu[0]['description'],
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            color: textFieldColor,
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(3.0),
-                            child: Icon(
-                              Icons.hourglass_bottom,
-                              color: primary,
-                              size: 18,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: textFieldColor,
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                          child: Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Text(
-                                firstMenu[0]['time'],
-                                style: TextStyle(fontSize: 14),
-                              )),
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: textFieldColor,
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                          child: Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Text(
-                                firstMenu[0]['delivery_fee'],
-                                style: TextStyle(fontSize: 14),
-                              )),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 10,
-              decoration: BoxDecoration(color: textFieldColor),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 15, right: 15, bottom: 30),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text("Explore More", style: customTitle)],
-              ),
-            ),
-            // SizedBox(
-            //   height: 15,
-            // ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                  children: List.generate(exploreMenu.length, (index) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 15, right: 15),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return StoreDetailPage(img: firstMenu[0]['img']);
+                  }));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Stack(
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width - 30,
+                            width: MediaQuery.of(context).size.width,
                             height: 160,
                             child: Image.network(
-                              exploreMenu[index]['img'],
+                              firstMenu[0]['img'],
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -434,10 +298,10 @@ class _HomePageState extends State<HomePage> {
                             bottom: 15,
                             right: 15,
                             child: Icon(
-                              exploreMenu[index]["is_liked"]
+                              firstMenu[0]["is_liked"]
                                   ? Icons.favorite
                                   : Icons.favorite_border,
-                              color: exploreMenu[index]["is_liked"]
+                              color: firstMenu[0]["is_liked"]
                                   ? Colors.red
                                   : Colors.white,
                               size: 30,
@@ -449,7 +313,7 @@ class _HomePageState extends State<HomePage> {
                         height: 15,
                       ),
                       Text(
-                        exploreMenu[index]['name'],
+                        firstMenu[0]['name'],
                         style: TextStyle(fontWeight: FontWeight.w400),
                       ),
                       SizedBox(
@@ -475,7 +339,7 @@ class _HomePageState extends State<HomePage> {
                         height: 8,
                       ),
                       Text(
-                        exploreMenu[index]['description'],
+                        firstMenu[0]['description'],
                         style: TextStyle(fontSize: 14),
                       ),
                       SizedBox(
@@ -508,7 +372,7 @@ class _HomePageState extends State<HomePage> {
                             child: Padding(
                                 padding: const EdgeInsets.all(5.0),
                                 child: Text(
-                                  exploreMenu[index]['time'],
+                                  firstMenu[0]['time'],
                                   style: TextStyle(fontSize: 14),
                                 )),
                           ),
@@ -522,30 +386,182 @@ class _HomePageState extends State<HomePage> {
                             ),
                             child: Padding(
                                 padding: const EdgeInsets.all(5.0),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      exploreMenu[index]['rate_number'],
-                                      style: TextStyle(fontSize: 14),
-                                    ),
-                                    SizedBox(
-                                      width: 3,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: yellowStar,
-                                      size: 17,
-                                    ),
-                                    Text(
-                                      exploreMenu[index]['delivery_fee'],
-                                      style: TextStyle(fontSize: 14),
-                                    ),
-                                  ],
+                                child: Text(
+                                  firstMenu[0]['delivery_fee'],
+                                  style: TextStyle(fontSize: 14),
                                 )),
                           ),
                         ],
                       ),
                     ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 10,
+              decoration: BoxDecoration(color: textFieldColor),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 15, right: 15, bottom: 30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [Text("Explore More", style: customTitle)],
+              ),
+            ),
+            // SizedBox(
+            //   height: 15,
+            // ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                  children: List.generate(exploreMenu.length, (index) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return StoreDetailPage(img: exploreMenu[index]['img']);
+                    }));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Stack(
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width - 30,
+                              height: 160,
+                              child: Image.network(
+                                exploreMenu[index]['img'],
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 15,
+                              right: 15,
+                              child: Icon(
+                                exploreMenu[index]["is_liked"]
+                                    ? Icons.favorite
+                                    : Icons.favorite_border,
+                                color: exploreMenu[index]["is_liked"]
+                                    ? Colors.red
+                                    : Colors.white,
+                                size: 30,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          exploreMenu[index]['name'],
+                          style: TextStyle(fontWeight: FontWeight.w400),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "Sponsored",
+                              style: TextStyle(color: black, fontSize: 14),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Icon(
+                              Icons.info,
+                              color: Colors.grey,
+                              size: 20,
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          exploreMenu[index]['description'],
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: textFieldColor,
+                                borderRadius: BorderRadius.circular(3),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: Icon(
+                                  Icons.hourglass_bottom,
+                                  color: primary,
+                                  size: 18,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: textFieldColor,
+                                borderRadius: BorderRadius.circular(3),
+                              ),
+                              child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(
+                                    exploreMenu[index]['time'],
+                                    style: TextStyle(fontSize: 14),
+                                  )),
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: textFieldColor,
+                                borderRadius: BorderRadius.circular(3),
+                              ),
+                              child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        exploreMenu[index]['rate_number'],
+                                        style: TextStyle(fontSize: 14),
+                                      ),
+                                      SizedBox(
+                                        width: 3,
+                                      ),
+                                      Icon(
+                                        Icons.star,
+                                        color: yellowStar,
+                                        size: 17,
+                                      ),
+                                      Text(
+                                        exploreMenu[index]['delivery_fee'],
+                                        style: TextStyle(fontSize: 14),
+                                      ),
+                                    ],
+                                  )),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 );
               })),
@@ -575,137 +591,145 @@ class _HomePageState extends State<HomePage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                   children: List.generate(popluarNearYou.length, (index) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 15, right: 15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Stack(
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width - 30,
-                            height: 160,
-                            child: Image.network(
-                              popluarNearYou[index]['img'],
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 15,
-                            right: 15,
-                            child: Icon(
-                              popluarNearYou[index]["is_liked"]
-                                  ? Icons.favorite
-                                  : Icons.favorite_border,
-                              color: popluarNearYou[index]["is_liked"]
-                                  ? Colors.red
-                                  : Colors.white,
-                              size: 30,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        popluarNearYou[index]['name'],
-                        style: TextStyle(fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "Sponsored",
-                            style: TextStyle(color: black, fontSize: 14),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(
-                            Icons.info,
-                            color: Colors.grey,
-                            size: 20,
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Text(
-                        popluarNearYou[index]['description'],
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: textFieldColor,
-                              borderRadius: BorderRadius.circular(3),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: Icon(
-                                Icons.hourglass_bottom,
-                                color: primary,
-                                size: 18,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return StoreDetailPage(img: popluarNearYou[index]['img']);
+                    }));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Stack(
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width - 30,
+                              height: 160,
+                              child: Image.network(
+                                popluarNearYou[index]['img'],
+                                fit: BoxFit.cover,
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: textFieldColor,
-                              borderRadius: BorderRadius.circular(3),
+                            Positioned(
+                              bottom: 15,
+                              right: 15,
+                              child: Icon(
+                                popluarNearYou[index]["is_liked"]
+                                    ? Icons.favorite
+                                    : Icons.favorite_border,
+                                color: popluarNearYou[index]["is_liked"]
+                                    ? Colors.red
+                                    : Colors.white,
+                                size: 30,
+                              ),
                             ),
-                            child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Text(
-                                  popluarNearYou[index]['time'],
-                                  style: TextStyle(fontSize: 14),
-                                )),
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: textFieldColor,
-                              borderRadius: BorderRadius.circular(3),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          popluarNearYou[index]['name'],
+                          style: TextStyle(fontWeight: FontWeight.w400),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "Sponsored",
+                              style: TextStyle(color: black, fontSize: 14),
                             ),
-                            child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      popluarNearYou[index]['rate_number'],
-                                      style: TextStyle(fontSize: 14),
-                                    ),
-                                    SizedBox(
-                                      width: 3,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: yellowStar,
-                                      size: 17,
-                                    ),
-                                    Text(
-                                      popluarNearYou[index]['delivery_fee'],
-                                      style: TextStyle(fontSize: 14),
-                                    ),
-                                  ],
-                                )),
-                          ),
-                        ],
-                      ),
-                    ],
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Icon(
+                              Icons.info,
+                              color: Colors.grey,
+                              size: 20,
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          popluarNearYou[index]['description'],
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: textFieldColor,
+                                borderRadius: BorderRadius.circular(3),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: Icon(
+                                  Icons.hourglass_bottom,
+                                  color: primary,
+                                  size: 18,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: textFieldColor,
+                                borderRadius: BorderRadius.circular(3),
+                              ),
+                              child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(
+                                    popluarNearYou[index]['time'],
+                                    style: TextStyle(fontSize: 14),
+                                  )),
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: textFieldColor,
+                                borderRadius: BorderRadius.circular(3),
+                              ),
+                              child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        popluarNearYou[index]['rate_number'],
+                                        style: TextStyle(fontSize: 14),
+                                      ),
+                                      SizedBox(
+                                        width: 3,
+                                      ),
+                                      Icon(
+                                        Icons.star,
+                                        color: yellowStar,
+                                        size: 17,
+                                      ),
+                                      Text(
+                                        popluarNearYou[index]['delivery_fee'],
+                                        style: TextStyle(fontSize: 14),
+                                      ),
+                                    ],
+                                  )),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 );
               })),
